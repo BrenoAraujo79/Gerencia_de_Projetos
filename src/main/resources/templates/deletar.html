@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../css/Cadastro.css">
+    <link rel="stylesheet" href="../css/toolbar-style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deletar todos os Usuarios</title>
+</head>
+<body>
+<toolbar-sith></toolbar-sith><header>
+    <div class="logo">
+        <img src="../images/relogio_ponto.jpg">
+    </div>
+    <ul>
+        <li> <a href="./home">Home</a>  </li>
+        <li><a href="./login">Login</a></li>
+        <li><a href="./cadastrar">Cadastro</a></li>
+    </ul>
+    <div class="spacer"></div>
+</header>
+<main>
+    <div id="background">
+        <div id="login-box">
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <label id="label-login">Apagar Todos os Usuarios</label>
+                <i style="text-shadow: 0.1em 0.1em #000; font-size: 40px; color: white;" class="material-icons">delete</i>
+            </div>
+            <form id="form" method="POST"><input type="text" name="nome" id="input-nome" placeholder="Insira o nome do usuario"></form>>
+            <div>
+            </div>
+            <button type="button" id="button-cadastro" class="geral-button" onclick="enviar_formulario();">Apagar</button>
+        </div>
+
+    </div>
+
+
+</main>
+<footer>
+    Feito por Breno, Marcisio e Thiago
+    <script src="../js/gerenciar.js"></script>
+</body>
+</html>

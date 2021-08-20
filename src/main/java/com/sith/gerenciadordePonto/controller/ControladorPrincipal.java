@@ -27,9 +27,29 @@ public class ControladorPrincipal {
                 return "login";
         }
 
+        @RequestMapping(value = "/loginok", method = RequestMethod.GET)
+        public String getLoginok(){
+                return "loginSucesso";
+        }
+
         @RequestMapping(value = "/cadastrar", method = RequestMethod.GET)
         public String getCadastro(){
                 return "cadastro";
+        }
+
+        @RequestMapping(value = "/gerente", method = RequestMethod.GET)
+        public String getGerente(){
+                return "gerente";
+        }
+
+        @RequestMapping(value = "/deletar", method = RequestMethod.GET)
+        public String getDeletar(){
+                return "deletar";
+        }
+
+        @RequestMapping(value = "/deletarNome", method = RequestMethod.GET)
+        public String getDeletarporNome(){
+                return "deletarNome";
         }
 
 
@@ -46,7 +66,7 @@ public class ControladorPrincipal {
                         for(Usuarios a: usuariosList){
                                 if(usuarios.getSenha().equals(a.getSenha())
                                         && usuarios.getNome().equals(a.getNome())){
-                                        return "redirect:/usuarios/home";
+                                        return "redirect:/usuarios/loginok";
                                 }
                         }
 
@@ -55,5 +75,42 @@ public class ControladorPrincipal {
                 }
                 return "redirect:/usuarios/login";
         }
+
+
+        @RequestMapping(value = "/deletar", method = RequestMethod.POST)
+        public String apagarTudo(Usuarios usuarios){
+                List<Usuarios> usuariosList = userService.findAll();
+
+                try {
+                        for(Usuarios a: usuariosList){
+                                if (a.getNome().equals(usuarios.getNome())) {
+                                        userService.delete();
+                                        return "redirect:/usuarios/gerente";
+                                }
+                        }
+                }catch (Exception e) {
+                        return "redirect:/usuarios/deletar";
+                }
+                return "redirect:/usuarios/deletar";
+        }
+
+        @RequestMapping(value = "/deletarNome", method = RequestMethod.POST)
+        public String apagarAlguns(Usuarios usuarios){
+                List<Usuarios> usuariosList = userService.findAll();
+
+                try {
+                        for(Usuarios a: usuariosList){
+                                if (a.getNome().equals(usuarios.getNome())) {
+                                        userService.deleteById(a.getId());
+                                        return "redirect:/usuarios/gerente";
+                                }
+                        }
+                }catch (Exception e) {
+                        return "redirect:/usuarios/deletarNome";
+                }
+                return "redirect:/usuarios/deletarNome";
+        }
+
+
 
 }

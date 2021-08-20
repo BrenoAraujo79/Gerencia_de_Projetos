@@ -10,19 +10,11 @@ class Toolbar extends HTMLElement {
             </div>
             <ul>
                 <li> <a href="./home">Home</a>  </li>
-                <li><a href="./filmes">Filmes</li>
-                <li><a href="./series">Séries</li>
-                <li><a href="./login">Login</a></li>
+                <li><a href="./login">Login</li>
+                <li><a href="./cadastrar">Cadastrar</li>
             </ul>
-            <div class="spacer"></div>
-            <div class="busca">
-                <input type="text" placeholder="Search a movie">
-                <button class="submit">
-                    <i id="search" style="color: black;" class="material-icons">search</i>
-                </button>
-            </div>
         </header>`
     }
 }
 
-customElements.define('toolbar', Toolbar)
+customElements.define('toolbar-sith', Toolbar)

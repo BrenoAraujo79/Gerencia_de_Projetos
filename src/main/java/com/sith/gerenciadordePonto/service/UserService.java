@@ -12,5 +12,9 @@ public interface UserService {
 
         public Usuarios save(Usuarios usuarios);
 
+        public void delete();
+
+        public void deleteById(Long id);
+
 }
 
