@@ -52,14 +52,20 @@ public class ControladorPrincipal {
                 return "deletarNome";
         }
 
+        @RequestMapping(value = "/editar", method = RequestMethod.GET)
+        public String getEditar(){
+                return "editar";
+        }
+
 
         @RequestMapping(value = "/cadastrar",method = RequestMethod.POST)
-        public String cadastrar(Usuarios usuarios){
+        public String cadastrar(CadastroUsuarios usuarios){
                 userService.save(new Usuarios(usuarios.getNome(),usuarios.getSenha()));
+
                 return "redirect:/usuarios/login";
         }
         @RequestMapping(value = "/login", method = RequestMethod.POST)
-        public String login(Usuarios usuarios){
+        public String login(CadastroUsuarios usuarios){
                 List<Usuarios> usuariosList = userService.findAll();
                 System.out.println(""+usuarios.getNome());
                 try{
@@ -78,7 +84,7 @@ public class ControladorPrincipal {
 
 
         @RequestMapping(value = "/deletar", method = RequestMethod.POST)
-        public String apagarTudo(Usuarios usuarios){
+        public String apagarTudo(CadastroUsuarios usuarios){
                 List<Usuarios> usuariosList = userService.findAll();
 
                 try {
@@ -95,7 +101,7 @@ public class ControladorPrincipal {
         }
 
         @RequestMapping(value = "/deletarNome", method = RequestMethod.POST)
-        public String apagarAlguns(Usuarios usuarios){
+        public String apagarAlguns(CadastroUsuarios usuarios){
                 List<Usuarios> usuariosList = userService.findAll();
 
                 try {
@@ -109,6 +115,25 @@ public class ControladorPrincipal {
                         return "redirect:/usuarios/deletarNome";
                 }
                 return "redirect:/usuarios/deletarNome";
+        }
+
+        @RequestMapping(value = "/editar", method = RequestMethod.POST)
+        public String editar(CadastroUsuarios usuarios){
+                List<Usuarios> usuariosList = userService.findAll();
+                try{
+                        for(Usuarios a: usuariosList){
+                                if(a.getNome().equals(usuarios.getNome())){
+                                        userService.deleteById(a.getId());
+                                        userService.save(new Usuarios(usuarios.getNovonome(),usuarios.getSenha()));
+                                        return "redirect:/usuarios/gerente";
+                                }
+                        }
+
+                }catch (Exception e) {
+                        return "redirect:/usuarios/editar";
+                }
+
+                return "redirect:/usuarios/editar";
         }
 
 

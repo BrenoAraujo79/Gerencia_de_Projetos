@@ -4,6 +4,7 @@ public class CadastroUsuarios {
 
     public String nome;
     public String senha;
+    public String novonome;
 
     public CadastroUsuarios() {
     }
@@ -18,7 +19,7 @@ public class CadastroUsuarios {
     }
 
     public void setNome(String nome) {
-        nome = nome;
+        this.nome = nome;
     }
 
     public String getSenha() {
@@ -29,4 +30,11 @@ public class CadastroUsuarios {
         this.senha = senha;
     }
 
+    public String getNovonome() {
+        return novonome;
+    }
+
+    public void setNovonome(String novonome) {
+        this.novonome = novonome;
+    }
 }
